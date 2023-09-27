@@ -6,20 +6,15 @@ fake = Faker()
 
 with app.app_context():
     db.create_all()
-    
-    # Remove existing data
     db.session.query(RestaurantPizza).delete()
     db.session.query(Pizza).delete()
     db.session.query(Restaurant).delete()
-    
-    # Create pizzas
     pizzas = []
     for i in range(10):
         pizza = Pizza(name=fake.word(), ingredients=fake.sentence())
         pizzas.append(pizza)
     db.session.add_all(pizzas)
     
-    # Create restaurants with associated pizzas
     restaurants = []
     for i in range(5):
         restaurant = Restaurant(name=fake.company(), address=fake.address())
@@ -27,7 +22,7 @@ with app.app_context():
         restaurants.append(restaurant)
     db.session.add_all(restaurants)
     
-    # Create restaurant_pizzas
+
     restaurant_pizzas = []
     for restaurant in restaurants:
         for pizza in restaurant.pizzas:

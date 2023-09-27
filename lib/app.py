@@ -22,7 +22,7 @@ def get_restaurants():
         restaurant_list.append(restaurant_data)
     return jsonify(restaurant_list), 200
 
-# GET /restaurants/:id
+# GET by id
 @app.route('/restaurants/<int:id>', methods=['GET'])
 def get_restaurant(id):
     restaurant = Restaurant.query.get(id)
@@ -45,7 +45,7 @@ def get_restaurant(id):
     else:
         return jsonify({'error': 'Restaurant not found'}), 404
 
-# DELETE /restaurants/:id
+# DELETE
 @app.route('/restaurants/<int:id>', methods=['DELETE'])
 def delete_restaurant(id):
     restaurant = Restaurant.query.get(id)
