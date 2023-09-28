@@ -11,7 +11,7 @@ class Pizza(db.Model):
 class Restaurant(db.Model):
     __tablename__ = 'restaurants'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), unique=True)
+    name = db.Column(db.String(50))
     address = db.Column(db.String)
     pizzas = db.relationship('Pizza', secondary='restaurant_pizzas')
 
